@@ -1,0 +1,42 @@
+body {
+    text-align: center;
+}
+
+table {
+    height: 310px;
+    width: 310px;
+    margin: 20px;
+    padding: 0px;
+    display: inline-block;
+    background-color: rgb(228, 228, 228);
+    border-width: 4px;
+    border-style: outset;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+tbody {
+    height: auto;
+    width: auto;
+    margin: 12px;
+    display: block;
+    background-color: rgb(228, 228, 228);
+    border-width: 4px;
+    border-style: inset;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+td {
+    border-width: 3px;
+    display: inline-block;
+    border-style: outset;
+    width: 27px;
+    height: 26px;
+    cursor: pointer;
+}
+
+td:hover {
+    border-width: 4px;;
+    border-style: inset;    
+}
