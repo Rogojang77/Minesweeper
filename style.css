@@ -2,41 +2,57 @@ body {
     text-align: center;
 }
 
-table {
-    height: 310px;
-    width: 310px;
-    margin: 20px;
-    padding: 0px;
+#gameBoard {
+    height: 320px;
+    width: 280px;
+    margin: 30px auto;
+    padding: 10px;
     display: inline-block;
-    background-color: rgb(228, 228, 228);
-    border-width: 4px;
+    background-color: rgb(205, 205, 205);
+    grid-template-columns: repeat(10, auto);
+    border: 4px;
     border-style: outset;
-    border-collapse: collapse;
-    border-spacing: 0px;
+    font-size: 60%;
 }
 
-tbody {
-    height: auto;
-    width: auto;
-    margin: 12px;
-    display: block;
-    background-color: rgb(228, 228, 228);
-    border-width: 4px;
-    border-style: inset;
-    border-collapse: collapse;
-    border-spacing: 0px;
-}
-
-td {
-    border-width: 3px;
+.cell {
+    width: 25px;
+    height: 25px;
     display: inline-block;
-    border-style: outset;
-    width: 27px;
-    height: 26px;
     cursor: pointer;
+    background-color: rgb(182, 179, 179);
+    font-size: 10px;
+    border-style: outset;
+    border-width: 3px;
 }
 
-td:hover {
-    border-width: 4px;;
-    border-style: inset;    
+.cell:hover {
+    border-width: 3px;
+    border-style: inset;
+}
+
+#gameStatus2 {
+    position: absolute;
+    left: 48%;
+    top: 28%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: rgb(182, 179, 179);
+    font-size: 10px;
+    border-style: outset;
+    border-width: 3px;
+}
+
+#gameStatus1,
+#gameStatus3 {
+    font-size:160%;
+    width: 86px;
+}
+
+#gameStatus3 {
+    position: absolute;
+    left: 59%;
+    top: 28%;
 }
