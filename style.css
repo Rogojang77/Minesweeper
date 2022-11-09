@@ -3,7 +3,7 @@ body {
 }
 
 #gameBoard {
-    height: 310px;
+    height: 320px;
     width: 280px;
     margin: 30px auto;
     padding: 10px auto;
@@ -14,8 +14,6 @@ body {
     border-style: outset;
     font-size: 60%;
 }
-
-
 
 .cell {
     width: 25px;
@@ -33,18 +31,15 @@ body {
     border-style: inset;
 }
 
-#gameStatus1,
-#gameStatus3 {
-    position: relative; 
-    top: 7px;
-    left: 10px;
-    font-size:160%;
-    width: 86px;
-    height: 15px;
+#headCell {
+    font-size: medium;
+    width: 80px;
+    display: inline-block;
 }
 
-#gameStatus2{
-    width: 86px;
-    height: 10px;
-    left: 100px;
+#scoreBoard {
+    grid-template-columns: repeat(3, auto);
+    width: 250px;
+    margin: 10px;
+    display: inline-block;
 }

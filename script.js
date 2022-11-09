@@ -19,6 +19,18 @@ function createBoard() {
     }
 }
 
+let xCell, yCell;
+
+function setBombs() {
+    for (let i = 0; i <= boardSize; ++i) {
+        do {
+            xCell = Math.floor(Math.random() * 9);
+            yCell = Math.floor(Math.random() * 9);
+        } while (isNaN(gameBoard.rows[xCell].cells[xCell].innerHTML));
+        gameBoard.rows[yCell].cells[yCell].innerHTML = `<i class="las la-bomb" style="color: red;"></i>`;
+    }
+}
+
 let seconds = 0;
 
 function timer() {
