@@ -2,7 +2,7 @@ let gameBoard;
 let cell;
 let boardSize = 10;
 
-window.onload = (event) => {
+window.onload = () => {
     createBoard()
     setInterval(timer, 1000);
 }
@@ -14,14 +14,6 @@ function createBoard() {
             cell = document.createElement("tr");
             cell.className = "cell";
             cell.id = [i, j];
-            cell.addEventListener("mousedown",  event => {
-                if (event.button == 0) {
-                    showList.push([i, j]);
-                    showElements();
-                } else if (event.button == 2) {
-                    flagMark([i, j]);
-                }
-            }, false);
             gameBoard.appendChild(cell);
         }
     }
