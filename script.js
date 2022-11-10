@@ -1,9 +1,11 @@
 let gameBoard;
 let cell;
 let boardSize = 10;
+let bombs = boardSize;
 
 window.onload = () => {
     createBoard()
+    generateBombs();
     setInterval(timer, 1000);
 }
 
@@ -19,21 +21,20 @@ function createBoard() {
     }
 }
 
-let xCell, yCell;
-
-function setBombs() {
-    for (let i = 0; i <= boardSize; ++i) {
-        do {
-            xCell = Math.floor(Math.random() * 9);
-            yCell = Math.floor(Math.random() * 9);
-        } while (isNaN(gameBoard.rows[xCell].cells[xCell].innerHTML));
-        gameBoard.rows[yCell].cells[yCell].innerHTML = `<i class="las la-bomb" style="color: red;"></i>`;
-    }
-}
-
 let seconds = 0;
 
 function timer() {
     seconds += 1
     document.getElementById('timer').innerHTML = new Date(seconds * 1000).toISOString().slice(14, 19) + " ⏱";
+}
+
+function generateBombs() {
+    let bomb;
+    do {
+        row = Math.floor(Math.random() * boardSize);
+        column = Math.floor(Math.random() * boardSize);
+        bomb = document.getElementById([row, column]);
+        bomb.innerHTML = "💣";
+        --bombs;
+    } while (bombs > 0);
 }

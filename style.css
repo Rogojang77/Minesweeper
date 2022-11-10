@@ -31,7 +31,9 @@ body {
     border-style: inset;
 }
 
-#headCell {
+#timer,
+#reset,
+#bombs {
     font-size: medium;
     width: 80px;
     display: inline-block;
