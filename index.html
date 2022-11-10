@@ -10,7 +10,7 @@
   <body>
     <h1>Minesweeper</h1>
     <div>
-      <table id="gameBoard" oncontextmenu="return false;">
+      <table>
         <thead>
           <tr id="scoreBoard">
             <td id="timer">
@@ -19,11 +19,13 @@
             <td  id="reset">
               <button class="button" onclick="window.location.reload();">Restart</button>
             </td>
-            <td  id="bombs">
+            <td  id="minesCounter">
               10 💣
             </td>
           </tr>
         </thead>
+        <tbody id="gameBoard">
+        </tbody>
       </table>
     </div>
     <script src="script.js"></script>

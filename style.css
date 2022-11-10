@@ -2,20 +2,20 @@ body {
     text-align: center;
 }
 
-#gameBoard {
+table {
     height: 320px;
     width: 280px;
     margin: 30px auto;
     padding: 10px auto;
     display: inline-block;
-    background-color: rgb(205, 205, 205);
     grid-template-columns: repeat(10, auto);
+    background-color: rgb(205, 205, 205);
     border: 4px;
     border-style: outset;
     font-size: 60%;
 }
 
-.cell {
+#gameBoard TR{
     width: 25px;
     height: 25px;
     display: inline-block;
@@ -23,17 +23,12 @@ body {
     background-color: rgb(182, 179, 179);
     font-size: 10px;
     border-style: outset;
-    border-width: 3px;
-}
-
-.cell:hover {
-    border-width: 3px;
-    border-style: inset;
+    border-width: 2px;
 }
 
 #timer,
 #reset,
-#bombs {
+#minesCounter {
     font-size: medium;
     width: 80px;
     display: inline-block;
@@ -44,4 +39,17 @@ body {
     width: 250px;
     margin: 10px;
     display: inline-block;
+}
+
+#gameBoard TR.flag {
+    background-image: url("./flag.png");
+}
+
+#gameBoard TR.mine {
+    border-style: inset;
+    background-image: url("./mine.png");
+}
+
+#gameBoard TR.clicked {
+    border-style: inset;
 }
