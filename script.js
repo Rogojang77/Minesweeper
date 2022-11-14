@@ -2,14 +2,16 @@ let gameBoard;
 let boardSize = 9;
 let gameOver = false;
 let displayMines = 10;
+let displayMinesAC = 10;
 let board = [];
 let hiddenBoard = [];
+let timerA;
 const counterDisplay = document.getElementById("minesCounter");
 
 window.onload = () => {
     createBoard()
     generateMines();
-    setInterval(timer, 1000);
+    timerA = setInterval(timer, 1000);
     countMines();
 }
 
@@ -31,13 +33,20 @@ function createBoard() {
                 function() {
                     clickOnCell(board, i, j);
                 };
+           
             board[i][j].oncontextmenu = 
                 function() {
-                    if(this.className == "flag") {
-                        this.classList.remove("flag");
-                    }
-                    else if(this.className != "clicked" && this.className != "mine") {
-                        this.className = "flag";
+                    if (!gameOver) {
+                        if(this.className == "flag") {
+                            this.classList.remove("flag");
+                            displayMines += 1;
+                            counterDisplay.innerHTML = displayMines + " 💣";
+                        }
+                        else if(this.className != "clicked" && this.className != "mine") {
+                            this.className = "flag";
+                            displayMines -= 1;
+                            counterDisplay.innerHTML = displayMines + " 💣";
+                        }
                     }
                 };
             board[i].appendChild(board[i][j]);
@@ -63,8 +72,6 @@ function generateMines() {
         }
         hiddenBoard[row][column] = "💣";
         board[row][column].className = "💣";
-
-        console.log(row, column);
     }
 }
 
@@ -79,15 +86,16 @@ function showMines() {
         }    
     }
     gameOver = true;
+    clearInterval(timerA);
     return;
 }
 
 function clickOnCell(board, i, j) {
-    if(gameOver == true) {
+    if(gameOver) {
         return;
     }
     if (board[i][j].className != "flag") {
-        if(board[i][j].className == "💣") {
+        if(hiddenBoard[i][j] == "💣") {
             showMines();
         } else {
             showNumberCell(board, i, j);
@@ -95,6 +103,10 @@ function clickOnCell(board, i, j) {
         if (hiddenBoard[i][j] == "") {
             findEmptyCells(i, j);
         }
+    }
+    if(gameWon()) {
+        gameWon();
+        return;
     }
 }
 
@@ -140,6 +152,19 @@ function findEmptyCells(i, j) {
                     if (hiddenBoard[x][y] == "") {
                         findEmptyCells(x, y);
                     }
+                }
+            }
+        }
+    }
+}
+
+function gameWon() {
+    for (let i = 0; i < boardSize; ++i) {
+        for (let j = 0; j < boardSize; ++j) {
+            if(displayMines == 0) {
+                if(hiddenBoard[i][j] == "💣" && board[i][j].className == "flag") {
+                    alert("game won");
+                    return;
                 }
             }
         }
