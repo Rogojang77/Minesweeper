@@ -3,19 +3,19 @@ body {
 }
 
 table {
-    height: 320px;
+    height: 310px;
     width: 280px;
     margin: 30px auto;
-    padding: 10px auto;
+    padding: 5px auto;
     display: inline-block;
-    grid-template-columns: repeat(10, auto);
+    grid-template-columns: repeat(9, auto);
     background-color: rgb(205, 205, 205);
     border: 4px;
     border-style: outset;
     font-size: 60%;
 }
 
-#gameBoard TR{
+#gameBoard TR TD{
     width: 25px;
     height: 25px;
     display: inline-block;
@@ -35,21 +35,21 @@ table {
 }
 
 #scoreBoard {
-    grid-template-columns: repeat(3, auto);
     width: 250px;
     margin: 10px;
     display: inline-block;
 }
 
-#gameBoard TR.flag {
+#gameBoard TR TD.flag {
     background-image: url("./flag.png");
 }
 
-#gameBoard TR.mine {
+#gameBoard TR TD.mine {
     border-style: inset;
     background-image: url("./mine.png");
 }
 
-#gameBoard TR.clicked {
+#gameBoard TR TD.clicked {
     border-style: inset;
+    font-size: small;
 }
