@@ -3,8 +3,8 @@ body {
 }
 
 table {
-    height: 310px;
-    width: 280px;
+    height: 300px;
+    width: 265px;
     margin: 30px auto;
     padding: 5px auto;
     display: inline-block;
@@ -15,7 +15,22 @@ table {
     font-size: 60%;
 }
 
-#gameBoard TR TD{
+img{
+    width: 25px;
+    height: 25px;
+}
+
+#scoreBoard {
+    width: 233;
+    padding: 5px;
+    display: inline-block;
+    background-color: rgb(205, 205, 205);
+    border: 4px;
+    border-style: inset;
+    font-size: 60%;
+}
+
+#gameBoard TR TD {
     width: 25px;
     height: 25px;
     display: inline-block;
@@ -26,17 +41,19 @@ table {
     border-width: 2px;
 }
 
+
+
 #timer,
 #reset,
 #minesCounter {
     font-size: medium;
-    width: 80px;
+    width: 70px;
     display: inline-block;
 }
 
 #scoreBoard {
     width: 250px;
-    margin: 10px;
+    margin: 5px;
     display: inline-block;
 }
 
