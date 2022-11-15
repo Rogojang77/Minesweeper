@@ -1,11 +1,12 @@
 let gameBoard;
 let boardSize = 9;
-let gameActive = true;
-let timeSet = false;
+let gameActive = false;
+let gameOver = false;
 let time;
 let displayMines = 10;
 let board = [];
 let behindBoard = [];
+let seconds = 0;
 const counterDisplay = document.getElementById("minesCounter");
 
 window.onload = () => {
@@ -28,13 +29,13 @@ function createBoard() {
             board[i][j] = document.createElement("td");
             board[i][j].id = [i, j];
             board[i][j].onclick = function() {
-                if (gameActive) {
+                if(!gameOver) {
                     clickOnCell(board, i, j);
-                } 
+                }
             };          
 
             board[i][j].oncontextmenu = function() {
-                if (gameActive) {
+                if (!gameOver) {
                     if(this.className == "flag") {
                         this.classList.remove("flag");
                         displayMines += 1;
@@ -46,19 +47,16 @@ function createBoard() {
                         counterDisplay.innerHTML = displayMines + " 💣";
                     }
                 }
+                gameWon();
             };
             board[i].appendChild(board[i][j]);
         }
     }
 }
 
-let seconds = 0;
-
 function timer() {
     seconds += 1
     document.getElementById('timer').innerHTML = new Date(seconds * 1000).toISOString().slice(14, 19) + " ⏱";
-    timeSet = true;
-    gameWon();
 }
 
 function generateMines() {
@@ -99,9 +97,10 @@ function countMines() {
 }
 
 function clickOnCell(board, i, j) {
-    if(!timeSet && gameActive) {
+    if(!gameActive) {
         time = setInterval(timer, 1000);
     }
+    gameActive = true;
     if(board[i][j].className != "flag") {      
         if(behindBoard[i][j] == "💣") {
             showMines();
@@ -125,8 +124,8 @@ function showMines() {
         }    
     }
     document.getElementById("img").src = "face_lose.svg";
-    gameActive = false;
     clearInterval(time);
+    gameOver = true;
     return;
 }
 
@@ -157,14 +156,11 @@ function gameWon() {
     for(let i = 0; i < boardSize; ++i) {
         for(let j = 0; j < boardSize; ++j) {
             if(displayMines == 0) {
-                gameActive = false;
                 clearInterval(time);
+                gameOver = true;
                 if(behindBoard[i][j] == "💣" && board[i][j].className == "flag") {
                     document.getElementById("img").src = "face_win.svg";
-                    return;
                 }
-            } else {
-                continue;
             }
         }
     }
