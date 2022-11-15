@@ -28,8 +28,11 @@ function createBoard() {
             board[i][j] = document.createElement("td");
             board[i][j].id = [i, j];
             board[i][j].onclick = function() {
+                if (gameActive) {
                     clickOnCell(board, i, j);
-                };          
+                } 
+            };          
+
             board[i][j].oncontextmenu = function() {
                 if (gameActive) {
                     if(this.className == "flag") {
@@ -55,6 +58,7 @@ function timer() {
     seconds += 1
     document.getElementById('timer').innerHTML = new Date(seconds * 1000).toISOString().slice(14, 19) + " ⏱";
     timeSet = true;
+    gameWon();
 }
 
 function generateMines() {
@@ -95,14 +99,10 @@ function countMines() {
 }
 
 function clickOnCell(board, i, j) {
-    if(!timeSet) {
+    if(!timeSet && gameActive) {
         time = setInterval(timer, 1000);
-     }
-    if(!gameActive) {
-        return;
     }
-    if(board[i][j].className != "flag") {
-        
+    if(board[i][j].className != "flag") {      
         if(behindBoard[i][j] == "💣") {
             showMines();
         } else {
@@ -112,7 +112,6 @@ function clickOnCell(board, i, j) {
             findEmptyCells(i, j);
         }
     }
-    gameWon();
 }
 
 function showMines() {
@@ -159,11 +158,13 @@ function gameWon() {
         for(let j = 0; j < boardSize; ++j) {
             if(displayMines == 0) {
                 gameActive = false;
+                clearInterval(time);
                 if(behindBoard[i][j] == "💣" && board[i][j].className == "flag") {
                     document.getElementById("img").src = "face_win.svg";
-                    clearInterval(time);
                     return;
                 }
+            } else {
+                continue;
             }
         }
     }
