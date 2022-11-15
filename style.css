@@ -58,12 +58,12 @@ img{
 }
 
 #gameBoard TR TD.flag {
-    background-image: url("./flag.png");
+    background-image: url("./images/flag.png");
 }
 
 #gameBoard TR TD.mine {
     border-style: inset;
-    background-image: url("./mine.png");
+    background-image: url("images/mine.png");
 }
 
 #gameBoard TR TD.clicked {

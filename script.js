@@ -28,7 +28,6 @@ function createBoard() {
         for (let j = 0; j < boardSize; ++j) {
             behindBoard[i][j] = "0";
             board[i][j] = document.createElement("td");
-            board[i][j].id = [i, j];
             board[i][j].onclick = function() {
                 if(!gameOver) {
                     clickOnCell(board, i, j);
@@ -47,7 +46,6 @@ function createBoard() {
 function timer() {
     seconds += 1
     document.getElementById('timer').innerHTML = new Date(seconds * 1000).toISOString().slice(14, 19) + " ⏱";
-    console.log(squares);
 }
 
 function generateMines() {
@@ -132,7 +130,7 @@ function showMines() {
             }
         }    
     }
-    document.getElementById("img").src = "face_lose.svg";
+    document.getElementById("img").src = "images/face_lose.svg";
     clearInterval(time);
     gameOver = true;
     return;
@@ -167,7 +165,7 @@ function gameWon() {
     for(let i = 0; i < boardSize; ++i) {
         for(let j = 0; j < boardSize; ++j) {         
             if(behindBoard[i][j] == "💣" && board[i][j].className == "flag") {
-                document.getElementById("img").src = "face_win.svg";
+                document.getElementById("img").src = "images/face_win.svg";
             }
         }
     }
